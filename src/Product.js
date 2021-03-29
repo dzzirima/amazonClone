@@ -2,22 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-function Product() {
+function Product({title,price,rating,image}) {
+
 
     
 
     return (
         <Container>
             <Title>
-                title
+            {title}
             </Title>
             <Price>
-                price
+                ${price}
             </Price>
-            <Rating>
-                
+            <Rating>{
+                Array(rating)
+                .fill()    
+                .map(rating => <p>⭐</p> )
+            }
             </Rating>
-            <Image src={'https://www.game.co.za/medias/740985-EA-1200x1200.jpg?context=bWFzdGVyfGltYWdlc19vbmVjb218MjMxNjk5fGltYWdlL2pwZWd8aGQ3L2hjNy84OTIzMjk5MTE5MTM0LmpwZ3wxMDYzZDY0NTQyMWM4OGRkMDkzYzJhODkwNjJlZTIwZTg0M2Q3MTYyNDMwNGNjMzg3NzQ3NTc3MGE3YjBhMDQz'} />
+            <Image src={image} />
             <ActionSection>
                 <AddToCartButton
                    

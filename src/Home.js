@@ -1,14 +1,51 @@
-import React from 'react'
+import React, { useState ,useEffect} from 'react'
 import styled from 'styled-components'
 import Product from './Product'
+import {db} from './firebase'
+
+
 
 const Home = () => {
+    const [products, setProducts] = useState([])
+
+    const getProducts = () =>{
+        var tempProducts = []
+
+        db.collection("products").onSnapshot((snapshot) =>{
+           
+            tempProducts = snapshot.docs.map((doc) =>(
+                {
+                    id:doc.id,
+                    product:doc.data(),
+                }
+            ));
+            // put the products in the state
+            setProducts(tempProducts)
+        })
+       
+    }
+
+    useEffect(() => {
+        //  this make sure that the function is call once
+        getProducts()
+    }, [])
+   
+   
+    console.log(products)
     return (
         <Container>
             <Banner></Banner>
             <Contents> 
-            <Product/>
-            <Product/>
+            {
+                products.map((data) =>
+                    <Product
+                    title = {data.product.name}
+                    price = {data.product.price}
+                    rating = {data.product.rating}
+                    image = {data.product.image}  
+                    />
+                )
+            }
             </Contents>
 
         </Container>

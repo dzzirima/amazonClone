@@ -156,4 +156,5 @@ const HeaderOptionCard = styled.div`
     }
 `
 const CartCount = styled.div`
+    color:#F08804
 `
