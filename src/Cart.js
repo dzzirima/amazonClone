@@ -3,10 +3,13 @@ import React from 'react'
 import CardItems from './CardItems'
 import CardTotal from './CardTotal'
 
-const Cart = () => {
+const Cart = ({cartitems }) => {
+    
+
+
     return (
         <Container>
-            <CardItems></CardItems>
+            <CardItems cartitems = {cartitems}></CardItems>
             <CardTotal></CardTotal>
             
             
