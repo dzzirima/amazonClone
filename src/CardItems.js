@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import CartItem from './CartItem'
 
 const CardItems = ({cartitems }) => {
-   
-    
     return (
         <Container>
            <Title>Shopping Cart</Title>
@@ -20,9 +18,7 @@ const CardItems = ({cartitems }) => {
                 
                     />
                    ))
-               }
-
-            
+               }  
            </ItemsContainer>
         </Container>
     )

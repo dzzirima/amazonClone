@@ -11,6 +11,7 @@ import {
   Link
 } from "react-router-dom";
 import {db} from './firebase'
+import Login from './Login';
 
 
 
@@ -36,9 +37,12 @@ useEffect(() => {
   return (
     <Router>
         <div className="App">
-          <Header/>
+          <Header cartitems = {cartItems}/>
 
           <Switch>
+            <route path = "/Login">
+              <Login></Login>
+            </route>
             <route path = "/cart">
               <Cart cartitems = {cartItems}/>
             </route>

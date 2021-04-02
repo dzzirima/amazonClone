@@ -7,7 +7,19 @@ import SearchIcon from '@material-ui/icons/Search';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const Header = () => {
+const Header = ({ cartitems }) => {
+    const getCount = () =>{
+        let count = 0;
+        //loop through all the cart items
+        cartitems.forEach(cartitem => {
+            //add the quantity of the cart item to total
+            count += cartitem.product.quantity
+            
+        });
+        return count
+
+    }
+
     return (
         <Container>
             <HeaderLogo>
@@ -45,7 +57,7 @@ const Header = () => {
                         <HeaderOptionCard>
                         <Link  to ="/cart">
                             <LocalMallIcon></LocalMallIcon>
-                            <CartCount>4</CartCount>
+                            <CartCount>{getCount()}</CartCount>
                             </Link>
                         </HeaderOptionCard> 
             </HeaderNavitems>
