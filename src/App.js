@@ -10,7 +10,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {db} from './firebase'
+import {db,auth} from './firebase'
 import Login from './Login';
 
 
@@ -18,6 +18,8 @@ import Login from './Login';
 
 function App() {
 
+//login stte of the useruse
+const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 const [cartItems, setCartItems] = useState([]);
 
 const getCartItems =()=>{
@@ -34,15 +36,30 @@ useEffect(() => {
   getCartItems()
 }, [])
 
+
+const signOut = () =>{
+  auth.signOut().then(()=>{
+    setUser(null)
+  })
+}
+
+
+
+
+
   return (
     <Router>
-        <div className="App">
-          <Header cartitems = {cartItems}/>
+
+    {/* if ther is no user show us the login otherwise show use the other pages */}
+      {
+       
+        !user ? (  
+          <Login></Login>
+        ):(
+          <div className="App">
+            <Header cartitems = {cartItems}  user = {user} signOut = {signOut}/>
 
           <Switch>
-            <route path = "/Login">
-              <Login></Login>
-            </route>
             <route path = "/cart">
               <Cart cartitems = {cartItems}/>
             </route>
@@ -52,6 +69,9 @@ useEffect(() => {
           </Switch>
           
         </div>
+        )
+      }
+        
     </Router>
 
   );

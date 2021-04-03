@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const Header = ({ cartitems }) => {
+const Header = ({ cartitems ,user ,signOut}) => {
     const getCount = () =>{
         let count = 0;
         //loop through all the cart items
@@ -46,8 +46,8 @@ const Header = ({ cartitems }) => {
             </HeaderSearch>
 
             <HeaderNavitems>
-                <HeaderOption>
-                    <OptionLineOne> Hello ,David</OptionLineOne>
+                <HeaderOption onClick = {signOut}>
+                    <OptionLineOne> Hello ,{user}</OptionLineOne>
                     <OptionLineTwo> Account & Lists</OptionLineTwo>
                 </HeaderOption>
                 <HeaderOption>
